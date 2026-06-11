@@ -153,30 +153,8 @@ desktop.ini
 *.swo
 ## 七、项目配置与运行
 1. 核心参数配置
-打开 main.py，顶部全局参数可根据自身设备、场景修改：
-python
-运行
- 同一目标最小识别间隔(秒)，防止重复推理
-RECOG_INTERVAL = 1.5
- 同一名称语音播报最小间隔(秒)，防止语音刷屏
-TTS_INTERVAL = 3.0
- YOLO 推理分辨率，数值越小速度越快、精度略降
-YOLO_SIZE = 320
- 人脸匹配相似度阈值（越低越宽松，越高越严格）
-FACE_SIM_THRESHOLD = 0.45
- 物品匹配相似度阈值（物品易误检，默认设置偏高）
-OBJ_SIM_THRESHOLD = 0.80
- 队列最大长度，控制内存占用
-MAX_QUEUE_SIZE = 3
- 自动选择 CUDA / CPU 设备
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
- 视频流地址：0=本地USB摄像头；IP地址=网络摄像头/DroidCam
-CAM_URL = "http://192.168.1.6:4747/video"
-常用修改场景
-本地 USB 摄像头：CAM_URL = 0
-画面卡顿：降低 YOLO_SIZE、增大 RECOG_INTERVAL
-物品误识别：调高 OBJ_SIM_THRESHOLD
-语音播报频繁：调高 TTS_INTERVAL
+打开 main.py，顶部全局参数可根据自身设备、场景修改：python运行 同一目标最小识别间隔(秒)，防止重复推理
+RECOG_INTERVAL = 1.5 同一名称语音播报最小间隔(秒)，防止语音刷屏TTS_INTERVAL = 3.0 YOLO 推理分辨率，数值越小速度越快、精度略降YOLO_SIZE = 320 人脸匹配相似度阈值（越低越宽松，越高越严格）FACE_SIM_THRESHOLD = 0.45 物品匹配相似度阈值（物品易误检，默认设置偏高）OBJ_SIM_THRESHOLD = 0.80 队列最大长度，控制内存占用AX_QUEUE_SIZE = 3 自动选择 CUDA / CPU 设备DEVICE = "cuda" if torch.cuda.is_available() else "cpu" 视频流地址：0=本地USB摄像头；IP地址=网络摄像头/DroidCamCAM_URL = "http://192.168.1.6:4747/video"常用修改场景本地 USB 摄像头：CAM_URL = 0画面卡顿：降低 YOLO_SIZE、增大 RECOG_INTERVAL物品误识别：调高 OBJ_SIM_THRESHOLD语音播报频繁：调高 TTS_INTERVAL
 2. 启动程序
 bash
 运行
@@ -190,7 +168,7 @@ ESC 键	正常退出程序，自动释放摄像头、线程、队列、临时文
 红色矩形框：未注册目标，标签显示 Unknown + 相似度
 绿色矩形框：已注册目标，标签显示 名称 + 相似度，自动触发语音播报
 
-##八、整体架构设计
+## 八、整体架构设计
 1. 多线程分工（解耦设计，保障流畅）
 主线程：读取视频流、画面绘制、按键监听、特征注册逻辑
 推理子线程：YOLO 目标检测、人脸 / 物品特征提取、特征库比对（耗时操作隔离）
@@ -209,7 +187,7 @@ plaintext
 存储内容：特征向量 + 类型标记（0 = 人脸，1 = 物品）
 加载逻辑：程序启动自动遍历目录，加载全部特征数据
 
-##九、常见问题 & 全套解决方案
+## 九、常见问题 & 全套解决方案
 1. 依赖相关问题
 问题：ModuleNotFoundError 找不到模块
 现象：运行提示 cv2、ultralytics、torch 等模块不存在
