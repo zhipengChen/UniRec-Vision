@@ -1,0 +1,21 @@
+# 基础图像处理
+opencv-python>=4.8.0
+numpy>=1.24.0
+Pillow>=10.0.0
+
+# YOLO 目标检测
+ultralytics>=8.2.0
+
+# 人脸识别 InsightFace
+insightface>=0.7.3
+onnxruntime>=1.16.0
+
+# 深度学习框架
+torch>=2.0.0
+torchvision>=0.15.0
+
+# 语音合成 edge-tts
+edge-tts>=6.1.9
+
+# 系统音频播放(linux)
+# 若为 Windows 可不用写，Linux 需手动安装 mpg123
