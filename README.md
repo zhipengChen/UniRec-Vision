@@ -77,75 +77,76 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 Windows 系统
 无需额外安装系统组件，字体、命令自动兼容。
+```
 ##五、依赖文件：requirements.txt
 在项目根目录新建 requirements.txt，粘贴以下内容：
 txt
-# 基础图像处理库
+### 基础图像处理库
 opencv-python>=4.8.0
 numpy>=1.24.0
 Pillow>=10.0.0
 
-# YOLOv8 目标检测
+### YOLOv8 目标检测
 ultralytics>=8.2.0
 
-# 人脸识别 & ONNX 运行库
+### 人脸识别 & ONNX 运行库
 insightface>=0.7.3
 onnxruntime>=1.16.0
 
-# 深度学习框架
+### 深度学习框架
 torch>=2.0.0
 torchvision>=0.15.0
 
-# 语音合成
+### 语音合成
 edge-tts>=6.1.9
 安装依赖命令
 bash
 运行
-# 常规安装
+### 常规安装
 pip install -r requirements.txt
 
-# 国内镜像加速（网络慢时使用）
+### 国内镜像加速（网络慢时使用）
 pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ## 六、Git 忽略配置：.gitignore
 在项目根目录新建 .gitignore，粘贴以下内容，避免上传缓存、虚拟环境、临时文件：
 gitignore
-# Python 编译缓存
+### Python 编译缓存
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 *.pyx
 
-# 虚拟环境目录
+### 虚拟环境目录
 venv/
 env/
 .venv/
 ENV/
 
-# 模型权重文件
+### 模型权重文件
 *.pt
 *.pth
 *.onnx
 *.trt
 
-# 音视频临时文件
+### 音视频临时文件
 *.mp3
 *.wav
 *.mp4
 /tmp/
 
-# 本地特征库（默认不上传，如需同步可删除此行）
+### 本地特征库（默认不上传，如需同步可删除此行）
 unified_database/
 
-# 系统垃圾文件
+### 系统垃圾文件
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# 日志文件
+### 日志文件
 *.log
 
-# IDE 配置文件
+### IDE 配置文件
 .vscode/
 .idea/
 *.swp
@@ -155,21 +156,21 @@ desktop.ini
 打开 main.py，顶部全局参数可根据自身设备、场景修改：
 python
 运行
-# 同一目标最小识别间隔(秒)，防止重复推理
+ 同一目标最小识别间隔(秒)，防止重复推理
 RECOG_INTERVAL = 1.5
-# 同一名称语音播报最小间隔(秒)，防止语音刷屏
+ 同一名称语音播报最小间隔(秒)，防止语音刷屏
 TTS_INTERVAL = 3.0
-# YOLO 推理分辨率，数值越小速度越快、精度略降
+ YOLO 推理分辨率，数值越小速度越快、精度略降
 YOLO_SIZE = 320
-# 人脸匹配相似度阈值（越低越宽松，越高越严格）
+ 人脸匹配相似度阈值（越低越宽松，越高越严格）
 FACE_SIM_THRESHOLD = 0.45
-# 物品匹配相似度阈值（物品易误检，默认设置偏高）
+ 物品匹配相似度阈值（物品易误检，默认设置偏高）
 OBJ_SIM_THRESHOLD = 0.80
-# 队列最大长度，控制内存占用
+ 队列最大长度，控制内存占用
 MAX_QUEUE_SIZE = 3
-# 自动选择 CUDA / CPU 设备
+ 自动选择 CUDA / CPU 设备
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-# 视频流地址：0=本地USB摄像头；IP地址=网络摄像头/DroidCam
+ 视频流地址：0=本地USB摄像头；IP地址=网络摄像头/DroidCam
 CAM_URL = "http://192.168.1.6:4747/video"
 常用修改场景
 本地 USB 摄像头：CAM_URL = 0
@@ -207,6 +208,7 @@ plaintext
 文件格式：自定义名称.npz
 存储内容：特征向量 + 类型标记（0 = 人脸，1 = 物品）
 加载逻辑：程序启动自动遍历目录，加载全部特征数据
+
 ##九、常见问题 & 全套解决方案
 1. 依赖相关问题
 问题：ModuleNotFoundError 找不到模块
